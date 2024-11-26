@@ -1,0 +1,11 @@
+# Environment files
+.env
+*.env
+
+# Docker files
+**/Dockerfile
+**/docker-compose.yaml
+
+# Logs and temporary files
+*.log
+tmp/
