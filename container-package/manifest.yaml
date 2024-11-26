@@ -1,0 +1,38 @@
+applicationName: ${APP_NAME}  # Unique name for your application
+publisher: ${PUBLISHER_NAME}  # Name of the publishing organization
+description: ${APP_DESCRIPTION}  # Brief description of the application
+version: ${APP_VERSION}  # Semantic versioning (e.g., "1.0.0")
+helmChart: "./${HELM_CHART_PATH}"  # Path to the Helm chart folder
+clusterArmTemplate: "./mainTemplate.json"  # Path to the ARM template for AKS
+uiDefinition: "./createUIDefinition.json"  # Path to the UI definition file
+registryServer: ${ACR_SERVER}  # Azure Container Registry server (e.g., "example.azurecr.io")
+
+extensionRegistrationParameters:
+  defaultScope: "cluster"
+  namespace: ${NAMESPACE}  # Kubernetes namespace for deployment
+
+containers:
+  backend:
+    image: ${BACKEND_IMAGE_NAME}  # Backend image name
+    registry: ${ACR_SERVER}  # Registry for backend image
+    digest: ${BACKEND_IMAGE_DIGEST}  # SHA256 digest of the backend image
+  frontend:
+    image: ${FRONTEND_IMAGE_NAME}  # Frontend image name
+    registry: ${ACR_SERVER}  # Registry for frontend image
+    digest: ${FRONTEND_IMAGE_DIGEST}  # SHA256 digest of the frontend image
+
+deploymentRestrictions:
+  minCores: ${MIN_CORES}  # Minimum cores required for the cluster
+  minNodes: ${MIN_NODES}  # Minimum nodes required
+  minKubernetesVersion: ${MIN_K8S_VERSION}  # Minimum Kubernetes version
+  requireGpuNodes: ${REQUIRE_GPU_NODES}  # Whether GPU nodes are required (true/false)
+  openshiftAllowed: ${OPENSHIFT_ALLOWED}  # Whether OpenShift is allowed (true/false)
+  nodeType: ${NODE_TYPE}  # Specific node type required, if any
+  newClusterRequired: ${NEW_CLUSTER_REQUIRED}  # If a new cluster is mandatory (true/false)
+
+metadata:
+  testParameterFile: ${TEST_PARAMETER_FILE}  # Path to the test parameter file
+  skipDeployment: ${SKIP_DEPLOYMENT}  # Whether to skip deployment during testing (true/false)
+
+
+  
